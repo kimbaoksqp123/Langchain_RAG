@@ -40,7 +40,7 @@ def create_qa_chain(prompt, llm, db):
 def read_vectors_db():
     # Embeding
     embedding_model = GPT4AllEmbeddings(model_file="models/all-MiniLM-L6-v2-f16.gguf")
-    db = FAISS.load_local(vector_db_path, embedding_model)
+    db = FAISS.load_local(vector_db_path, embedding_model, allow_dangerous_deserialization=True)
     return db
 
 
@@ -56,6 +56,8 @@ prompt = creat_prompt(template)
 llm_chain  =create_qa_chain(prompt, llm, db)
 
 # Chay cai chain
-question = "Ngày 18/12, SHB đã làm gì?"
+question = "Tầng Vật Lý (Physical Layer) trong mô hình OSI là gì?"
 response = llm_chain.invoke({"query": question})
 print(response)
+
+# run : python3 qabot.py

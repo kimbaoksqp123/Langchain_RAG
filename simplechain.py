@@ -44,3 +44,4 @@ question = "Một cộng một bằng mấy?"
 response = llm_chain.invoke({"question":question})
 print(response)
 
+# run : python3 simplechain.py
